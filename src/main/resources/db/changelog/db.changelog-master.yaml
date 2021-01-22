@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - logicalFilePath:  db/changelog/db.changelog-master.yaml
+  - changeSet:
+      id: 1
+      author: natalya_ezhkova@mail.ru
+      changes:
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(50)
+  - changeSet:
+      id: 2
+      author: natalya_ezhkova@mail.ru
+      comment: "Добавить данные в таблицу"
+      changes:
+        - insert:
+            tableName: addresses
+            columns:
+              - column:
+                  name: email
+                  value: "natalya_ezhkova@mail.ru"
+        - insert:
+            tableName: addresses
+            columns:
+              - column:
+                  name: email
+                  value: "n.safronova@i-teco.ru"
+      rollback:
+        - delete:
+            tableName: addresses
+            where: email in ('natalya_ezhkova@mail.ru', 'n.safronova@i-teco.ru')

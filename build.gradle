@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+	id "org.liquibase.gradle" version "2.0.4"
+}
+
+group = 'com.i-teco'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'junit:junit:4.12'
+	implementation 'org.apache.logging.log4j:log4j-core:2.0-beta9'
+	implementation 'org.projectlombok:lombok'
+	implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+	implementation group: 'org.liquibase', name: 'liquibase-core', version: '4.2.2'
+	testImplementation group: 'junit', name: 'junit', version: '4.12'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation "org.springframework.boot:spring-boot-starter-jdbc"
+	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.4.2'
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'pl.pragmatists:JUnitParams:1.0.5'
+	testImplementation 'org.assertj:assertj-core:2.2.0'
+
+}
+test {
+	useJUnitPlatform()
+}
